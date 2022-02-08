@@ -15,7 +15,7 @@ char* TempHIGHLOW(float temp)
   {
     TEMPERATURE_H_L = "tempisLow";
   }
-  elseif(temp>45)
+  else if(temp>45)
   {
     TEMPERATURE_H_L = "tempishigh";
   }
@@ -34,7 +34,7 @@ char *SOCHIGHLOW(float SOC)
   {
     SOC_H_L = "SOCislow";
   }
-  elseif(SOC > 80)
+  else if(SOC > 80)
   {
     SOC_H_L = "SOCishigh";
   }
