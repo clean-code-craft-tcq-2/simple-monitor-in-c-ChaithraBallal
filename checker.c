@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
 
-/*Code under Test*/
-int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempcheck)(float temperature), int (*fpSOCcheck)(float soc), int (*fpChargeRatecheck)(float ChargeRate)) 
-{
-  int Temp = fpTempcheck(temperature);
-  int SOC = fpSOCcheck(soc);
-  int ChargeRate = fpChargeRatecheck(chargeRate);
-  return (Temp && SOC && ChargeRate);
-}
-
 
 void Printonconsole(char *(fpdisplaystring)(float))
 {
@@ -84,7 +75,16 @@ int ChargeRatecheck(float ChargeRate)
 }
 
 
+/*Code under Test*/
+int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempcheck)(float temperature), int (*fpSOCcheck)(float soc), int (*fpChargeRatecheck)(float ChargeRate)) 
+{
+  int Temp = fpTempcheck(temperature);
+  int SOC = fpSOCcheck(soc);
+  int ChargeRate = fpChargeRatecheck(chargeRate);
+  return (Temp && SOC && ChargeRate);
+}
 
+/*Testing environemt*/
 int main() 
 {
   assert(batteryIsOk(25, 70, 0.7, &Tempcheck, &SOCcheck, &ChargeRatecheck));
