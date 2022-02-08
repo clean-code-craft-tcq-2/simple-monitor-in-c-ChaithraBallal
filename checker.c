@@ -76,10 +76,13 @@ int ChargeRatecheck(float ChargeRate)
     if(ChargeRate > 0.8) 
     {
       printf("Charge Rate out of range!\n");
+      return 0;
     }
-    return 0;
+    else
+    {
+      return 1;
+    }    
 }
-
 
 /*Code under Test*/
 int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempcheck)(float temperature), int (*fpSOCcheck)(float soc), int (*fpChargeRatecheck)(float ChargeRate)) 
