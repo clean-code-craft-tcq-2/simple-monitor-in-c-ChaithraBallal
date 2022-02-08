@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 
+/*Code under Test*/
 int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempcheck)(float temperature), int (*fpSOCcheck)(float soc), int (*fpChargeRatecheck)(float ChargeRate)) 
 {
   int Temp = fpTempcheck(temperature);
@@ -9,34 +10,6 @@ int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempchec
   return (Temp && SOC && ChargeRate);
 }
 
-int Tempcheck(float temperature)
-{
-    if(temperature < 0 || temperature > 45) 
-    {
-       Printonconsole(&TempHIGHLOW);
-       return 0;
-    }
-    return 1;
-}
-
-int SOCcheck(float soc)
-{
-  if(soc < 20 || soc > 80) 
-  {
-    Printonconsole(&SOCHIGHLOW);
-    return 0;
-  }
-   return 1;
-}
-
-int ChargeRatecheck(float ChargeRate)
-{
-    if(chargeRate > 0.8) 
-    {
-      printf("Charge Rate out of range!\n");
-    }
-    return 0;
-}
 
 void Printonconsole(char *(fpdisplaystring)(float))
 {
@@ -80,6 +53,37 @@ char *SOCHIGHLOW(float SOC)
   }
   return SOC_H_L;
 }
+
+int Tempcheck(float temperature)
+{
+    if(temperature < 0 || temperature > 45) 
+    {
+       Printonconsole(&TempHIGHLOW);
+       return 0;
+    }
+    return 1;
+}
+
+int SOCcheck(float soc)
+{
+  if(soc < 20 || soc > 80) 
+  {
+    Printonconsole(&SOCHIGHLOW);
+    return 0;
+  }
+   return 1;
+}
+
+int ChargeRatecheck(float ChargeRate)
+{
+    if(chargeRate > 0.8) 
+    {
+      printf("Charge Rate out of range!\n");
+    }
+    return 0;
+}
+
+
 
 int main() 
 {
