@@ -1,37 +1,32 @@
 #include <stdio.h>
 #include <assert.h>
 
-int batteryIsOk(float temperature, float soc, float chargeRate) 
+int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempcheck)(float temperature), int (*fpSOCcheck)(float soc), int (*fpChargeRatecheck)(float ChargeRate)) 
 {
-  if(temperature < 0 || temperature > 45) {
-    printf("Temperature out of range!\n");
-    return 0;
-  } else if(soc < 20 || soc > 80) {
-    printf("State of Charge out of range!\n");
-    return 0;
-  } else if(chargeRate > 0.8) {
-    printf("Charge Rate out of range!\n");
-    return 0;
-  }
-  return 1;
+  int Temp = Tempcheck(temperature);
+  int SOC = SOCcheck(soc);
+  int ChargeRate = ChargeRatecheck(chargeRate);
+  return (Temp && SOC && ChargeRate);
 }
 
 int Tempcheck(float temperature)
 {
     if(temperature < 0 || temperature > 45) 
     {
-       printf("Temperature out of range!\n");
+       Printonconsole(&TempHIGHLOW);
+       return 0;
     }
-    return 0;
+    return 1;
 }
 
 int SOCcheck(float soc)
 {
   if(soc < 20 || soc > 80) 
   {
-    printf("State of Charge out of range!\n");
+    Printonconsole(&SOCHIGHLOW);
     return 0;
   }
+   return 1;
 }
 
 int ChargeRatecheck(float ChargeRate)
@@ -70,10 +65,24 @@ char* TempHIGHLOW(float temp)
 /*check for SOC high or low and pass the print string*/
 char *SOCHIGHLOW(float SOC)
 {
+  char SOC_H_L;
+  if(SOC < 20)
+  {
+    SOC_H_L = "SOCislow";
+  }
+  elseif(SOC > 80)
+  {
+    SOC_H_L = "SOCishigh";
+  }
+  else
+  {
+    SOC_H_L = "SOCisnormal";
+  }
+  return SOC_H_L;
 }
 
 int main() 
 {
-  assert(batteryIsOk(25, 70, 0.7));
-  assert(!batteryIsOk(50, 85, 0));
+  assert(batteryIsOk(25, 70, 0.7, &Tempcheck, &SOCcheck, &ChargeRatecheck));
+  assert(!batteryIsOk(50, 85, 0, &Tempcheck, &SOCcheck, &ChargeRatecheck));
 }
