@@ -52,7 +52,10 @@ int Tempcheck(float temperature)
        Printonconsole(&TempHIGHLOW);
        return 0;
     }
-    return 1;
+    else
+    {
+      return 1;
+    }    
 }
 
 int SOCcheck(float soc)
@@ -62,7 +65,10 @@ int SOCcheck(float soc)
     Printonconsole(&SOCHIGHLOW);
     return 0;
   }
-   return 1;
+  else
+  {
+    return 1;
+  }   
 }
 
 int ChargeRatecheck(float ChargeRate)
