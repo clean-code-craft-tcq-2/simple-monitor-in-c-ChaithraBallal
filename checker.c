@@ -52,10 +52,7 @@ int Tempcheck(float temperature)
        Printonconsole(&TempHIGHLOW);
        return 0;
     }
-    else
-    {
-      return 1;
-    }    
+    return 1;        
 }
 
 int SOCcheck(float soc)
@@ -65,10 +62,7 @@ int SOCcheck(float soc)
     Printonconsole(&SOCHIGHLOW);
     return 0;
   }
-  else
-  {
-    return 1;
-  }   
+  return 1;    
 }
 
 int ChargeRatecheck(float ChargeRate)
@@ -77,11 +71,8 @@ int ChargeRatecheck(float ChargeRate)
     {
       printf("Charge Rate out of range!\n");
       return 0;
-    }
-    else
-    {
-      return 1;
     }    
+    return 1;     
 }
 
 /*Code under Test*/
