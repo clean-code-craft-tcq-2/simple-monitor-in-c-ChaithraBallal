@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <assert.h>
 
+#define SOCLOWTHRESHOLD               20
+#define SOCHIGHTHRESHOLD              80
+#define SOCLOWTHRESHOLD_WARNING       24
+#define SOCHIGHTHRESHOLD_WARNING      76
+
+#define TEMPLOWTHRESHOLD              0
+#define TEMPHIGHTHRESHOLD             45
+#define TEMPLOWTHRESHOLD_WARNING     -2.25
+#define TEMPHIGHTHRESHOLD_WARNING     42.25
+
+#define CHARGERATETHRESHOLD           0.8
+#define CHARGERATETHRESHOLD_WARNING   0.76
 
 void Printonconsole(char *(fpdisplaystring)(float))
 {
@@ -11,11 +23,11 @@ void Printonconsole(char *(fpdisplaystring)(float))
 char* TempHIGHLOW(float temp)
 {
   char TEMPERATURE_H_L;
-  if(temp < 0)
+  if(temp < TEMPLOWTHRESHOLD)
   {
     TEMPERATURE_H_L = "tempisLow";
   }
-  else if(temp>45)
+  else if(temp > TEMPHIGHTHRESHOLD)
   {
     TEMPERATURE_H_L = "tempishigh";
   }
@@ -30,11 +42,11 @@ char* TempHIGHLOW(float temp)
 char *SOCHIGHLOW(float SOC)
 {
   char SOC_H_L;
-  if(SOC < 20)
+  if(SOC < SOCLOWTHRESHOLD)
   {
     SOC_H_L = "SOCislow";
   }
-  else if(SOC > 80)
+  else if(SOC > SOCHIGHTHRESHOLD)
   {
     SOC_H_L = "SOCishigh";
   }
@@ -47,7 +59,7 @@ char *SOCHIGHLOW(float SOC)
 
 int Tempcheck(float temperature)
 {
-    if(temperature < 0 || temperature > 45) 
+    if(temperature < TEMPLOWTHRESHOLD || temperature > TEMPHIGHTHRESHOLD) 
     {
        Printonconsole(&TempHIGHLOW);
        return 0;
@@ -57,7 +69,7 @@ int Tempcheck(float temperature)
 
 int SOCcheck(float soc)
 {
-  if(soc < 20 || soc > 80) 
+  if(soc < SOCLOWTHRESHOLD || soc > SOCHIGHTHRESHOLD) 
   {
     Printonconsole(&SOCHIGHLOW);
     return 0;
@@ -67,7 +79,7 @@ int SOCcheck(float soc)
 
 int ChargeRatecheck(float ChargeRate)
 {
-    if(ChargeRate > 0.8) 
+    if(ChargeRate > CHARGERATETHRESHOLD) 
     {
       printf("Charge Rate out of range!\n");
       return 0;
