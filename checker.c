@@ -99,6 +99,6 @@ int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempchec
 /*Testing environemt*/
 int main() 
 {
-  assert(batteryIsOk(25, 70, 0.7, &Tempcheck, &SOCcheck, &ChargeRatecheck));
-  assert(!batteryIsOk(50, 85, 0, &Tempcheck, &SOCcheck, &ChargeRatecheck));
+  assert(batteryIsOk(25, 70, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
+  assert(!batteryIsOk(50, 85, 0, &tempCheck, &socCheck, &chargeRateCheck));
 }
