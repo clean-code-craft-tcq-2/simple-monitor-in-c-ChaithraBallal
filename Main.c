@@ -19,7 +19,7 @@ int main()
 {
   assert(batteryIsOk(25, 70, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
   assert(!batteryIsOk(-2.25, 70, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
-  assert(!batteryIsOk(42.25, 70, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
+  assert(batteryIsOk(42.25, 70, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
   assert(!batteryIsOk(25, 19, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
   assert(!batteryIsOk(25, 86, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
   assert(!batteryIsOk(25, 23, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
