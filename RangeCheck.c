@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
-#include <RangeCheck.h>
+#include "RangeCheck.h"
 
 char OutOfRange[100] = "Out Of Range";
 char WarningOutOfRange[100] = "Approaching Out of Range";
