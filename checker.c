@@ -14,13 +14,13 @@
 #define CHARGERATETHRESHOLD           0.8
 #define CHARGERATETHRESHOLD_WARNING   0.76
 
-void Printonconsole(char *(fpdisplaystring)(float))
+void printOnConsole(char *(fpdisplaystring)(float))
 {
   printf("%s\n", &fpdisplaystring);
 }
 
 /*check for temperature high or low and pass the print string*/
-char* TempHIGHLOW(float temp)
+char* tempHighLow(float temp)
 {
   char TEMPERATURE_H_L;
   if(temp < TEMPLOWTHRESHOLD)
@@ -39,7 +39,7 @@ char* TempHIGHLOW(float temp)
 }
 
 /*check for SOC high or low and pass the print string*/
-char *SOCHIGHLOW(float SOC)
+char *socHighLow(float SOC)
 {
   char SOC_H_L;
   if(SOC < SOCLOWTHRESHOLD)
@@ -57,27 +57,27 @@ char *SOCHIGHLOW(float SOC)
   return SOC_H_L;
 }
 
-int Tempcheck(float temperature)
+int tempCheck(float temperature)
 {
     if(temperature < TEMPLOWTHRESHOLD || temperature > TEMPHIGHTHRESHOLD) 
     {
-       Printonconsole(&TempHIGHLOW);
+       printOnConsole(&tempHighLow);
        return 0;
     }
     return 1;        
 }
 
-int SOCcheck(float soc)
+int socCheck(float soc)
 {
   if(soc < SOCLOWTHRESHOLD || soc > SOCHIGHTHRESHOLD) 
   {
-    Printonconsole(&SOCHIGHLOW);
+    printOnConsole(&socHighLow);
     return 0;
   }
   return 1;    
 }
 
-int ChargeRatecheck(float ChargeRate)
+int chargeRateCheck(float ChargeRate)
 {
     if(ChargeRate > CHARGERATETHRESHOLD) 
     {
