@@ -5,15 +5,12 @@
 #define SOCHIGHTHRESHOLD              80
 #define SOCLOWTHRESHOLD_WARNING       24
 #define SOCHIGHTHRESHOLD_WARNING      76
-
 #define TEMPLOWTHRESHOLD              0
 #define TEMPHIGHTHRESHOLD             45
 #define TEMPLOWTHRESHOLD_WARNING     -2.25
 #define TEMPHIGHTHRESHOLD_WARNING     42.25
-
 #define CHARGERATETHRESHOLD           0.8
 #define CHARGERATETHRESHOLD_WARNING   0.76
-
 char OutOfRange[100] = "Out Of Range";
 char WarningOutOfRange[100] = "Approaching Out of Range";
 char BMS_Normal[100] = "Battery is normal";
@@ -85,7 +82,6 @@ int batteryIsOk(float temperature, float soc, float chargeRate, int (*fptempChec
   int ChargeRate = fpchargeRateCheck(chargeRate);
   return (Temp && SOC && ChargeRate);
 }
-
 /*Testing environemt*/
 int main() 
 {
