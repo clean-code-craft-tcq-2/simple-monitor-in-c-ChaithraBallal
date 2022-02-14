@@ -78,11 +78,11 @@ int chargeRateCheck(float ChargeRate)
 }
 
 /*Code under Test*/
-int batteryIsOk(float temperature, float soc, float chargeRate, int (*fpTempcheck)(float temperature), int (*fpSOCcheck)(float soc), int (*fpChargeRatecheck)(float ChargeRate)) 
+int batteryIsOk(float temperature, float soc, float chargeRate, int (*fptempCheck)(float temperature), int (*fpsocCheck)(float soc), int (*fpchargeRateCheck)(float ChargeRate)) 
 {
-  int Temp = fpTempcheck(temperature);
-  int SOC = fpSOCcheck(soc);
-  int ChargeRate = fpChargeRatecheck(chargeRate);
+  int Temp = fptempCheck(temperature);
+  int SOC = fpsocCheck(soc);
+  int ChargeRate = fpchargeRateCheck(chargeRate);
   return (Temp && SOC && ChargeRate);
 }
 
