@@ -22,8 +22,8 @@ int main()
   assert(batteryIsOk(42.25, 70, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
   assert(!batteryIsOk(25, 19, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
   assert(!batteryIsOk(25, 86, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
-  assert(!batteryIsOk(25, 23, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
-  assert(!batteryIsOk(25, 78, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
+  assert(batteryIsOk(25, 23, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
+  assert(batteryIsOk(25, 78, 0.7, &tempCheck, &socCheck, &chargeRateCheck));
   assert(!batteryIsOk(25, 23, 0.9, &tempCheck, &socCheck, &chargeRateCheck));
-  assert(!batteryIsOk(25, 78, 0.78, &tempCheck, &socCheck, &chargeRateCheck));
+  assert(batteryIsOk(25, 78, 0.78, &tempCheck, &socCheck, &chargeRateCheck));
 }
