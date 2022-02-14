@@ -1,17 +1,11 @@
 #include <stdio.h>
 #include <assert.h>
-
-
-char OutOfRange[100] = "Out Of Range";
-char WarningOutOfRange[100] = "Approaching Out of Range";
-char BMS_Normal[100] = "Battery is normal";
+#include <RangeCheck.h>
 
 void printOnConsole(char* fpDisplay)
 {  
   printf("%s\n", &fpDisplay);
 }
-
-
 /*Code under Test*/
 int batteryIsOk(float temperature, float soc, float chargeRate, int (*fptempCheck)(float temperature), int (*fpsocCheck)(float soc), int (*fpchargeRateCheck)(float ChargeRate)) 
 {
