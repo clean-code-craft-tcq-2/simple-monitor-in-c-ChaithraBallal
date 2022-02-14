@@ -14,76 +14,66 @@
 #define CHARGERATETHRESHOLD           0.8
 #define CHARGERATETHRESHOLD_WARNING   0.76
 
-void printOnConsole(char *(fpdisplaystring)(float))
-{
-  printf("%s\n", &fpdisplaystring);
-}
+char OutOfRange[100] = "Out Of Range";
+char WarningOutOfRange[100] = "Approaching Out of Range";
+char BMS_Normal[100] = "Battery is normal";
 
-/*check for temperature high or low and pass the print string*/
-char* tempHighLow(float temp)
-{
-  char TEMPERATURE_H_L;
-  if(temp < TEMPLOWTHRESHOLD)
-  {
-    TEMPERATURE_H_L = "tempisLow";
-  }
-  else if(temp > TEMPHIGHTHRESHOLD)
-  {
-    TEMPERATURE_H_L = "tempishigh";
-  }
-  else
-  {
-    TEMPERATURE_H_L = "tempisnormal";
-  }
-  return TEMPERATURE_H_L;
-}
-
-/*check for SOC high or low and pass the print string*/
-char *socHighLow(float SOC)
-{
-  char SOC_H_L;
-  if(SOC < SOCLOWTHRESHOLD)
-  {
-    SOC_H_L = "SOCislow";
-  }
-  else if(SOC > SOCHIGHTHRESHOLD)
-  {
-    SOC_H_L = "SOCishigh";
-  }
-  else
-  {
-    SOC_H_L = "SOCisnormal";
-  }
-  return SOC_H_L;
+void printOnConsole(char* fpDisplay)
+{  
+  printf("%s\n", &fpDisplay);
 }
 
 int tempCheck(float temperature)
 {
-    if(temperature < TEMPLOWTHRESHOLD || temperature > TEMPHIGHTHRESHOLD) 
+    if(temperature <= TEMPLOWTHRESHOLD || temperature >= TEMPHIGHTHRESHOLD) 
     {
-       printOnConsole(&tempHighLow);
-       return 0;
+      printOnConsole(&OutOfRange);      
+      return 0;
+    }
+    else if( (temperature >= TEMPLOWTHRESHOLD_WARNING) || (temperature >= TEMPHIGHTHRESHOLD_WARNING) )
+    {
+      printOnConsole(&WarningOutOfRange);
+    }
+    else
+    {
+      printOnConsole(&BMS_Normal);
     }
     return 1;        
 }
 
 int socCheck(float soc)
 {
-  if(soc < SOCLOWTHRESHOLD || soc > SOCHIGHTHRESHOLD) 
+  if(soc <= SOCLOWTHRESHOLD || soc >= SOCHIGHTHRESHOLD) 
   {
-    printOnConsole(&socHighLow);
+    printOnConsole(&OutOfRange);
     return 0;
+  }
+  else if( (soc >= SOCLOWTHRESHOLD_WARNING) || (soc >= SOCHIGHTHRESHOLD_WARNING) )
+  {
+    printOnConsole(&WarningOutOfRange);
+  }
+  else
+  {
+    printOnConsole(&BMS_Normal);
   }
   return 1;    
 }
 
 int chargeRateCheck(float ChargeRate)
 {
-    if(ChargeRate > CHARGERATETHRESHOLD) 
+    if(ChargeRate >= CHARGERATETHRESHOLD) 
     {
-      printf("Charge Rate out of range!\n");
+      printOnConsole(&OutOfRange);
       return 0;
-    }    
+    }
+    else if(ChargeRate >= CHARGERATETHRESHOLD_WARNING)
+    {
+      printOnConsole(&WarningOutOfRange);
+    }
+    else
+    {
+      printOnConsole(&BMS_Normal);
+    }
     return 1;     
 }
 
