@@ -15,4 +15,4 @@
 extern int tempCheck(float temperature);
 extern int socCheck(float soc);
 extern int chargeRateCheck(float ChargeRate);
-extern int void printOnConsole(char* fpDisplay);
+extern void printOnConsole(char* fpDisplay);
