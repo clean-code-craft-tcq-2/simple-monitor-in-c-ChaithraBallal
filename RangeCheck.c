@@ -13,9 +13,13 @@ int tempCheck(float temperature)
       printOnConsole(&OutOfRange);      
       return 0;
     }
-    else if( (temperature >= TEMPLOWTHRESHOLD_WARNING) || (temperature >= TEMPHIGHTHRESHOLD_WARNING) )
+    else if(temperature >= TEMPLOWTHRESHOLD_WARNING) 
     {
       printOnConsole(&WarningOutOfRange);
+    }
+    else if(temperature >= TEMPHIGHTHRESHOLD_WARNING) 
+    {
+       printOnConsole(&WarningOutOfRange);
     }
     else
     {
@@ -31,9 +35,13 @@ int socCheck(float soc)
     printOnConsole(&OutOfRange);
     return 0;
   }
-  else if( (soc >= SOCLOWTHRESHOLD_WARNING) || (soc >= SOCHIGHTHRESHOLD_WARNING) )
+  else if(soc >= SOCLOWTHRESHOLD_WARNING) 
   {
     printOnConsole(&WarningOutOfRange);
+  }
+  else if(soc >= SOCHIGHTHRESHOLD_WARNING)
+  {
+      printOnConsole(&WarningOutOfRange);
   }
   else
   {
