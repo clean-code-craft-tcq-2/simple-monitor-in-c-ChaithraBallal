@@ -2,9 +2,9 @@
 #include <assert.h>
 #include "RangeCheck.h"
 
-char OutOfRange[100] = "Out Of Range";
-char WarningOutOfRange[100] = "Approaching Out of Range";
-char BMS_Normal[100] = "Battery is normal";
+char OutOfRange[100] = "Außer Reichweite";
+char WarningOutOfRange[100] = "Annäherung außerhalb der Reichweite";
+char BMS_Normal[100] = "Batterie ist normal";
 
 int tempCheck(float temperature)
 {
